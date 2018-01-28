@@ -2,7 +2,7 @@
 	"name":"akiyatkin/catalog-cost",
 	"require":{
 		"leongersen/noUiSlider":"~11",
-		"infrajs/catalog-range":"~1"
+		"akiyatkin/catalog-range":"~1"
 	},
 	"repositories":[
  		{

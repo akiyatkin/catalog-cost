@@ -41,6 +41,7 @@
 				var path = "{path}";
 				var min = {min};
 				var max = {max};
+				var step = {step};
 				var go = function (minval, maxval){
 					Ascroll.once = false;
 					if ({min} >= minval && {max} <= maxval) {

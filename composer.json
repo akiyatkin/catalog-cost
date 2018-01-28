@@ -1,0 +1,21 @@
+{
+	"name":"akiyatkin/catalog-cost",
+	"require":{
+		"leongersen/noUiSlider":"~11",
+		"infrajs/catalog-range":"~1"
+	},
+	"repositories":[
+ 		{
+            "type":"package",
+            "package":{
+                "name":"leongersen/noUiSlider",
+                "version":"11.0.3",
+                "source":{
+                    "type":"git",
+                    "url":"https://github.com/leongersen/noUiSlider",
+                    "reference":"11.0.3"
+                }
+            }
+        }
+    ]	
+}

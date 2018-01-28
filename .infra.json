@@ -1,0 +1,11 @@
+{
+	"dependencies":"event",
+	"update":"update.php",
+	"require":"infra.php",
+	"clutch":{
+		"noUiSlider":[
+			"vendor/leongersen/",
+			"vendor/akiyatkin/catalog-cost/"
+		]
+	}
+}

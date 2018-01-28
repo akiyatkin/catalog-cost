@@ -21,10 +21,10 @@
 		<div class="costslide">
 			<div class="row" style="margin-bottom:10px; font-size:18px">
 				<div class="col-sm-6">
-					<input style="width:100%; border:none; border-bottom:1px solid #ddd" id="inpmin{~key}" type="number">
+					<input style="width:100%; border:none; border-bottom:1px solid #ddd" id="inpmin{~key}" type="text">
 				</div>
 				<div class="col-sm-6">
-					<input style="width:100%; border:none; border-bottom:1px solid #ddd;" id="inpmax{~key}" type="number">
+					<input style="width:100%; border:none; border-bottom:1px solid #ddd;" id="inpmax{~key}" type="text">
 				</div>
 			</div>
 			<div id="costslider{~key}"></div>

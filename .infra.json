@@ -3,7 +3,7 @@
 	"update":"update.php",
 	"require":"infra.php",
 	"clutch":{
-		"noUiSlider":[
+		"nouislider":[
 			"vendor/leongersen/",
 			"vendor/akiyatkin/catalog-cost/"
 		]

@@ -1,75 +1,88 @@
-{layout-cost:}
+{layout-cost:}asdf
+{root:}
+	{~length(data.md.group)?data.list.Цена:block}
+	
+{costlabel:}Цена,&nbsp;руб.
+{costlabelno:}не&nbsp;указана
+{block:}
 	<div style="margin-top:5px; border-bottom:1px solid #ddd">
 		<style scoped>
 			.costslide {
 				margin-bottom:10px;
 			}
-			#costslider{~key} .noUi-connect {
-				background-color:#00809e;
+			#costslider{prop_nick} .noUi-connect {
+				background-color: var(--primary);
 			}
-			#costslider{~key} {
+			#costslider{prop_nick} {
 				margin-left:10px;
 				margin-right:10px;
 			}
 		</style>
 		<div>
-			<label style="font-weight:bold; font-size:18px">
-			  {data.count!count?:box}
-			  Цена,&nbsp;руб.&nbsp;<small>{filter}</small>
+			<label class="d-flex justify-content-between" style="font-weight:bold; font-size:16px">
+			  <span>
+			  	<!-- id add label checked-->
+			  	{:costlabel}
+				{~objasdf(:id,:costyes,:add,:more.Цена.yes,:label,:costlabel,:checked,data.md.more.Цена.yes):box}
+				</span>
+			  <span style="font-weight:normal; font-size:14px">
+			  	{~obj(:id,:costno,:add,:more.Цена.no,:label,:costlabelno,:checked,data.md.more.Цена.no):box}
+				</span>
 			</label>
 		</div>
 		<div class="costslide">
 			<div class="row" style="margin-bottom:10px; font-size:18px">
 				<div class="col-sm-6">
-					<input style="width:100%; border:none; border-bottom:1px solid #ddd" id="inpmin{~key}" type="text">
+					<input style="width:100%; border:none; border-bottom:1px solid #ddd; padding-left:4px" id="inpmin{prop_nick}" type="text">
 				</div>
 				<div class="col-sm-6">
-					<input style="width:100%; border:none; border-bottom:1px solid #ddd;" id="inpmax{~key}" type="text">
+					<input style="width:100%; border:none; border-bottom:1px solid #ddd; padding-left:4px" id="inpmax{prop_nick}" type="text">
 				</div>
 			</div>
-			<div id="costslider{~key}"></div>
+			<div id="costslider{prop_nick}"></div>
 		</div>
 		<div>
 			<label>
-			  {omit:box}
-			  Без цены&nbsp;<small>{omit.filter}</small>
+			  
 			</label>
 		</div>
 		<script>
 			domready(function(){
 				var m = "{data.m}";
-				var path = "{path}";
-				var min = {min};
-				var max = {max};
-				var step = {step};
+				var path = "more.{prop_nick}";
+				var min = {min|:0};
+				var max = {max|:100};
+				var origminval = {minval|:0};
+				var origmaxval = {maxval|:100};
+				var step = {step|:10};
 				var go = function (minval, maxval){
 					Ascroll.once = false;
-					if ({min} >= minval && {max} <= maxval) {
+					if (min >= minval && max <= maxval) {
 						Crumb.go('/catalog?m=' + m + ':'+path+'.minmax');
 					}else if (minval == maxval) {
 						var minv = minval - step;
 						var maxv = Number(maxval) + step;
-						if (minv < {min}) minv = {min};
-						if (maxv > {max}) maxv = {max};
+						if (minv < min) minv = min;
+						if (maxv > max) maxv = max;
 						Crumb.go('/catalog?m=' + m + ':' + path + '.minmax=' + minv + '/' + maxv);
 					} else {
 						Crumb.go('/catalog?m=' + m + ':' + path + '.minmax='+minval+'/'+maxval);
 					}
 				}
-				var slider = document.getElementById('costslider{~key}');
+				var slider = document.getElementById('costslider{prop_nick}');
 				noUiSlider.create(slider, {
-					start: [{minval}, {maxval}],
+					start: [origminval, origmaxval],
 					connect: true,	
 					animate:true,
-					//step:{step},
+					step:step,
 					range: {
-						'min': {min},
-						'max': {max}
+						'min': min,
+						'max': max
 					}
 				});
 
-				var inpmin = document.getElementById('inpmin{~key}');
-				var inpmax = document.getElementById('inpmax{~key}');
+				var inpmin = document.getElementById('inpmin{prop_nick}');
+				var inpmax = document.getElementById('inpmax{prop_nick}');
 
 				slider.noUiSlider.on('update', function( values, handle ) {
 					var value = values[handle];
@@ -97,6 +110,13 @@
 		</script>
 	</div>
 	{optval:}
-		<option value="{.}">
-	
-		
+		<option value="{.}"></option>
+	{box:}
+		<!-- id add label checked-->
+		<div style="cursor:pointer" class="custom-control custom-checkbox">
+			<input onchange="Ascroll.once = false; Crumb.go('/catalog{:cat.mark.add}{add}{checked??:one}')" {checked?:checked} type="checkbox" class="custom-control-input" id="box{id}">
+			<label class="custom-control-label" for="box{id}">{label}</label>
+		</div>
+	<!--<input style="cursor:pointer" onchange="Ascroll.once = false; Crumb.go('/catalog{:cat.mark.add}{add}')" {checked?:checked} type="checkbox">-->
+	{one:}=1
+	{cat::}-catalog/cat.tpl

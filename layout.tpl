@@ -1,4 +1,4 @@
-{layout-cost:}asdf
+{layout-cost:}layout-cost
 {root:}
 	{~length(data.md.group)?data.list.Цена:block}
 	

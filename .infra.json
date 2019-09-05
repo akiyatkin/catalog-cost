@@ -1,5 +1,5 @@
 {
-	"dependencies":"event",
+	"dependencies":["event","cart"],
 	"update":"update.php",
 	"require":"infra.php",
 	"clutch":{

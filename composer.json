@@ -1,7 +1,6 @@
 {
 	"name":"akiyatkin/catalog-cost",
 	"require":{
-		"leongersen/noUiSlider":"~12",
 		"akiyatkin/catalog-range":"~1"
 	}
 }
